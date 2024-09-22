@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://ciwojtejdi8gy"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_ehpub"]
+[ext_resource type="PackedScene" uid="uid://okyv6jpobo8j" path="res://Player.tscn" id="1_etspr"]
+[ext_resource type="PackedScene" uid="uid://dksdb73f0dobc" path="res://Wall.tscn" id="2_mgvgi"]
+[ext_resource type="PackedScene" uid="uid://wkn7kicn86dp" path="res://Ball.tscn" id="4_pbue6"]
+[ext_resource type="PackedScene" uid="uid://busb0ltueq2l1" path="res://Interface.tscn" id="5_7x3bd"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ehpub")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1000.0
+offset_bottom = 600.0
+color = Color(0.717647, 1, 1, 0.568627)
+
+[node name="Player" parent="." instance=ExtResource("1_etspr")]
+position = Vector2(35, 200)
+
+[node name="Player2" parent="." instance=ExtResource("1_etspr")]
+position = Vector2(965, 200)
+
+[node name="Wall" parent="." instance=ExtResource("2_mgvgi")]
+
+[node name="Ball" parent="." instance=ExtResource("4_pbue6")]
+
+[node name="Interface" parent="." instance=ExtResource("5_7x3bd")]
+
+[connection signal="exit_screen" from="Ball" to="." method="_on_ball_exit_screen"]
+[connection signal="touch_player_signal" from="Ball" to="." method="_on_ball_touch_player_signal"]
+[connection signal="click_start" from="Interface" to="." method="_on_interface_click_start"]
